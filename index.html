@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    .calculator {
+        width: 287px;
+        height: 427px;
+        /* border: 1px solid #333; */
+        /* border-radius: 5px; */
+        /* background-color: darkgreen; */
+        /* padding: 5px; */
+    }
+    .container {
+        display: grid;
+        grid-template-columns: repeat(4,65px);
+        grid-template-rows: repeat(5,65px);
+        gap: 5px;
+    }
+    .container input, .container button {
+        border-radius: 5px;
+    }
+    #clear {
+        background-color: olive;
+        grid-column: 1/3;
+        height: 65px;
+    }
+    #operator, #dot {
+        background-color: lightgrey;
+    }
+    .input {
+        grid-column: 1/5;
+        text-align: center;
+    }
+    #answer {
+        background-color: olive;
+        grid-column: 3/5;
+    }
+   
+</style>
+<body>
+    <div class="calculator">
+        <div class="container">
+            <input type="number" class="input">
+            <button class="bt_7" onclick="btn_click(7)">7</button>
+            <button class="bt_8" onclick="btn_click(8)">8</button>
+            <button class="bt_9" onclick="btn_click(9)">9</button>
+            <button id="operator" class="add" onclick="cal('+')">+</button>
+            <button class="bt_4" onclick="btn_click(4)">4</button>
+            <button class="bt_5" onclick="btn_click(5)">5</button>
+            <button class="bt_6" onclick="btn_click(6)">6</button>
+            <button id="operator" class="minus" onclick="cal('-')">-</button>
+            <button class="bt_1" onclick="btn_click(1)">1</button>
+            <button class="bt_2" onclick="btn_click(2)">2</button>
+            <button class="bt_3" onclick="btn_click(3)">3</button>
+            <button id="operator" class="multiply" onclick="cal('*')">*</button>
+            <button class="bt_0" onclick="btn_click(0)">0</button>
+            <button id="dot" class="dot" onclick="btn_click('.')">.</button>
+            <button id="operator" class="divide" onclick="cal('/')">/</button>
+            <button id="operator" class="percent" onclick="cal('%')">%</button>
+            <button id="clear" class="clear" onclick="clear()">c</button>
+            <button id="answer" class="answer" onclick="answer()">=</button>  
+        </div>  
+    </div>
+</body>
+</html>
+
+<script>
+    // 변수선언
+    var num = 0;
+    var symbol ;
+
+    function btn_click(a) {
+        document.querySelector('.input').value += a;
+    }
+
+    function cal(b) {
+        var firstNum = (document.querySelector('.input').value);
+        num = firstNum;
+        symbol = b;
+        return document.querySelector('.input').value = "";
+    }
+
+    // 결과값
+    function answer() {
+        var secNum = (document.querySelector('.input').value);
+        var result;
+        switch(symbol) {
+            case '+' : result = Number(num) + Number(secNum);
+            document.querySelector('.input').value = result;
+            break;
+            
+            case '-' : result = Number(num) - Number(secNum);
+            document.querySelector('.input').value = result;
+            break;
+
+            case '*' : result = Number(num) * Number(secNum);
+            document.querySelector('.input').value = result;
+            break;
+
+            case '%' : result = Number(num) % Number(secNum);
+            document.querySelector('.input').value = result;
+            break;
+
+            case '/' : result = Number(num) / Number(secNum);
+            document.querySelector('.input').value = result;
+            break;
+        }
+    }
+
+    // 리셋
+    function clear() {
+        document.querySelector('.input').value = 0;
+        num = 0;
+        firstNum = 0;
+        symbol = 0;
+    }
+
+    // // !-- 기록 -- !
+    // querySelector 차이점 selectElementById
+    // <예제 코드>
+    // <form id="userForm">
+    // <input id="username" type="text" value="Guilherme" />
+    // </form> 
+    // 가정했을때
+
+    // username 요소를 얻고 싶고 이를 변수로 할당하고 싶다.
+    // 1. getElementById 방법
+    // var username = document.getElementById("username");
+    // 2. querySelector 방법
+    // var username = document.querySelector("#userForm #username");
+    // document.getElementById('').value; = ('id') id를 통해 엘리먼트를 반환한다.
+    // document.querySelector('').value; = ('선택자') 선택자의 구체적인 그룹과 일치하는 document안 첫번째 엘리먼트를 반환한다. 
+    // 결론 = querySelector 내가 원하는 엘리먼트를 선택하는 것은 더 구체적이고 한정적이다. 결과는 같음!
+     
+    
+    
+
+</script>
+
+    <!-- let resultNumber =0;
+    // const $input = document.querySelector('.input');
+    // function onclickNumber(number) {
+    //     document.querySelector('.input').value = number;
+    // }
+    // // add
+    // function add() {
+    //     resultNumber = resultNumber + parseInt($input.value);
+    //     console.log(resultNumber);
+    //     document.querySelector('.input').value = resultNumber;
+    // } -->
